@@ -1,0 +1,16 @@
+#!/bin/bash
+
+# Get the Python file name from the environment variable
+pyfile=$PYFILE
+
+# Add the extension ".pyc" to the Python file name
+pycfile="${pyfile}c"
+
+# Compile the Python file using the "compileall" module
+python -m compileall $pyfile
+
+# Rename the compiled file to the desired output name
+mv "__pycache__/${pyfile}__"*"$pycfile"
+
+# Remove the "__pycache__" directory
+rm -r "__pycache__"
